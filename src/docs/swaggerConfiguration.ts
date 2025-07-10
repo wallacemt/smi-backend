@@ -4,7 +4,7 @@ export const swaggerOptions = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Baixio Turismo API",
+      title: "SMI API",
       version: "1.0.0",
       description: "Documentação da API Do Sistema Inteligente de Marketing.",
     },
