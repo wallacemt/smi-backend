@@ -16,6 +16,14 @@ export interface GeminiResponse {
   };
 }
 
+export interface GeminiImageResponseJson {
+  predictions: GeminiImageResponseAPI[];
+}
+export interface GeminiImageResponseAPI {
+  mimeType: string;
+  bytesBase64Encoded: string;
+  prompt: string;
+}
 export interface GeminiImageResponse {
   mimeType: string;
   imagePath: string;

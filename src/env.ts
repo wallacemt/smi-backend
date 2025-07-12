@@ -8,6 +8,9 @@ const envSchema = z.object({
   GEMINI_API_KEY: z.string(),
   APP_ID: z.string(),
   GCLOUD_TOKEN: z.string(),
+  CLOUDINARY_CLOUD_NAME: z.string(),
+  CLOUDINARY_API_KEY: z.string(),
+  CLOUDINARY_API_SECRET: z.string(),
 });
 
 export const env = envSchema.parse(process.env);

@@ -1,13 +1,13 @@
 import cors from "cors";
 import dotenv from "dotenv";
-import { requestLogger } from "./middleware/requestLogger";
 import express, { Application } from "express";
-import { swaggerSpec } from "./docs/swaggerConfiguration";
 import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./docs/swaggerConfiguration";
 import { StatusController } from "./controllers/statusController";
-import { CompanyController } from "./controllers/companyController";
 import { AuthController } from "./controllers/authController";
+import { CompanyController } from "./controllers/companyController";
 import { GeminiController } from "./controllers/aiController";
+import { requestLogger } from "./middleware/requestLogger";
 
 dotenv.config();
 class App {
