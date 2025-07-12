@@ -6,6 +6,8 @@ const envSchema = z.object({
   JWT_SECRET: z.string(),
   DATABASE_URL: z.string(),
   GEMINI_API_KEY: z.string(),
+  APP_ID: z.string(),
+  GCLOUD_TOKEN: z.string(),
 });
 
 export const env = envSchema.parse(process.env);

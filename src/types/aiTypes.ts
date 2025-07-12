@@ -16,3 +16,8 @@ export interface GeminiResponse {
   };
 }
 
+export interface GeminiImageResponse {
+  mimeType: string;
+  imagePath: string;
+  prompt: string;
+}

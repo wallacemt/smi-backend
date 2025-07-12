@@ -1,6 +1,7 @@
 import { Router, Request, Response } from "express";
 import { CompanyService } from "../services/companyService";
 import AuthPolice from "../middleware/authPolice";
+import errorFilter from "../utils/isCustomError";
 
 /**
  * @swagger
@@ -33,31 +34,39 @@ export class CompanyController {
       .catch((err) => res.status(500).json({ error: "Erro ao obter empresas", details: err }));
   }
 
-  public getCompanyDataById(req: Request, res: Response) {
-    this.companyService
-      .getCompanyDataById(req.params.id)
-      .then((data) => res.status(200).json(data))
-      .catch((err) => res.status(500).json({ error: "Erro ao obter empresa", details: err }));
+  private async getCompanyDataById(req: Request, res: Response) {
+    try {
+      const data = await this.companyService.getCompanyDataById(req.params.id);
+      res.status(200).json(data);
+    } catch (err: unknown) {
+      errorFilter(err, res);
+    }
   }
 
-  public addCompanyData(req: Request, res: Response) {
-    this.companyService
-      .addCompanyData(req.body)
-      .then((data) => res.status(200).json(data))
-      .catch((err) => res.status(500).json({ error: "Erro ao adicionar empresa", details: err }));
+  public async addCompanyData(req: Request, res: Response) {
+    try {
+      const data = await this.companyService.addCompanyData(req.body);
+      res.status(201).json(data);
+    } catch (err: unknown) {
+      errorFilter(err, res);
+    }
   }
 
-  public updateCompanyData(req: Request, res: Response) {
-    this.companyService
-      .updateCompanyData(req.body, req.params.id)
-      .then((data) => res.status(200).json(data))
-      .catch((err) => res.status(500).json({ error: "Erro ao atualizar empresa", details: err }));
+  public async updateCompanyData(req: Request, res: Response) {
+    try {
+      const data = await this.companyService.updateCompanyData(req.body, req.params.id);
+      res.status(200).json(data);
+    } catch (err: unknown) {
+      errorFilter(err, res);
+    }
   }
 
-  public deleteCompanyData(req: Request, res: Response) {
-    this.companyService
-      .deleteCompanyData(req.params.id)
-      .then((data) => res.status(200).json(data))
-      .catch((err) => res.status(500).json({ error: "Erro ao deletar empresa", details: err }));
+  public async deleteCompanyData(req: Request, res: Response) {
+    try {
+      const data = await this.companyService.deleteCompanyData(req.params.id);
+      if (data) res.status(200).json({ message: "data is removed" });
+    } catch (err: unknown) {
+      errorFilter(err, res);
+    }
   }
 }

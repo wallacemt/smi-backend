@@ -10,14 +10,26 @@ import { GeminiService } from "../services/geminiService";
  *   description: Rotas da AI da sistema
  */
 export class GeminiController {
-  public routerPublic: Router;
+  public router: Router;
   public aiService = new GeminiService();
+
   constructor() {
-    this.routerPublic = Router();
-    this.routesPublic();
+    this.router = Router();
+    this.aiRoutes();
   }
-  private routesPublic() {
+  private aiRoutes() {
+    this.router.use(AuthPolice);
+    this.router.post("/generate-image", this.generateImage.bind(this));
   }
 
-
+  public async generateImage(req: Request, res: Response): Promise<void> {
+    const { prompt } = req.body;
+    try {
+      const imageResponse = await this.aiService.generateImage(prompt);
+      res.status(201).send(imageResponse);
+    } catch (err: unknown) {
+      console.error("Erro ao gerar imagem:", err);
+      errorFilter(err, res);
+    }
+  }
 }
