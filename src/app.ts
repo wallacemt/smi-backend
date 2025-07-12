@@ -5,6 +5,8 @@ import express, { Application } from "express";
 import { swaggerSpec } from "./docs/swaggerConfiguration";
 import swaggerUi from "swagger-ui-express";
 import { StatusController } from "./controllers/statusController";
+import { CompanyController } from "./controllers/companyController";
+import { AuthController } from "./controllers/authController";
 
 dotenv.config();
 class App {
@@ -18,6 +20,8 @@ class App {
   routes() {
     this.app.get("/", (_req, res) => res.redirect("/docs"));
     this.app.use("/status", new StatusController().router);
+    this.app.use("/auth", new AuthController().router);
+    this.app.use("/company", new CompanyController().router);
     this.app.use(
       "/docs",
       swaggerUi.serve,

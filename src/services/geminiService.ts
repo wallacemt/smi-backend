@@ -1,52 +1,19 @@
-import Gemini from "gemini-ai-sdk";
-import { Exception } from "../utils/exception";
-import { GeminiResponse } from "../types/aiTypes";
-const gemini = new Gemini(process.env.GEMINI_API_KEY || "");
-
+import { GoogleGenAI } from "@google/genai";
+import { env } from "../env";
+const gemini = new GoogleGenAI({
+  apiKey: env.GEMINI_API_KEY,
+});
+const model = "gemini-2.5-flash";
 export class GeminiService {
-  public async translateObject(obj: Object, lenguage: string, sourceLeng = "pt"): Promise<Object> {
-    if (!lenguage || lenguage === sourceLeng || !obj) return obj;
-
-    const jsonString = JSON.stringify(obj);
-
-    const prompt = `
-    Translate the following JSON object's  string values from ${sourceLeng} to ${lenguage}, preserving keys and structure. Do NOT translate keys or non-text values:
-    ${jsonString}
-    `;
-    try {
-      const resp = await gemini.ask(prompt, { model: "gemini-2.0-flash" });
-
-      const response = resp as GeminiResponse;
-      const text = response.response.candidates![0].content.parts[0].text;
-      const jsonText = text.replace(/```json|```/g, "").trim();
-      try {
-        return JSON.parse(jsonText);
-      } catch (e) {
-        console.error("Resposta inválida do Gemini: ", response);
-        throw new Exception("Não foi possível interpretar a tradução", 500);
-      }
-    } catch (e) {
-      console.error("Error ao usar geminiAI", e);
-      throw new Exception("Error na tradução", 500);
-    }
-  }
-
   public async checkConnection() {
     const prompt = `return json with keys "status":string("healthy" or "unhealthy"), "model" = gemini-2.0-flash, "version":number(ex: 1.2), "latency":number(ms) and respective values`;
-    try {
-      const resp = await gemini.ask(prompt, { model: "gemini-2.0-flash" });
-      const response = resp as GeminiResponse;
-      const text = response.response.candidates![0].content.parts[0].text;
-      const jsonText = text.replace(/```json|```/g, "").trim();
-      try {
-        return JSON.parse(jsonText);
-      } catch (e) {
-        console.error("Resposta inválida do Gemini: ", response);
-        throw new Exception("Não foi possível interpretar a tradução", 500);
-      }
-    } catch (e) {
-      console.error("Error ao usar geminiAI", e);
-      throw new Exception("Error na tradução", 500);
-    }
+    const resp = await gemini.models.generateContent({
+      model,
+      contents: [{ text: prompt }],
+    });
+
+    const jsonResp = resp.text?.replace(/```json\n/, "").replace(/\n```/, "");
+    const parsed = JSON.parse(jsonResp!);
+    return parsed;
   }
 }

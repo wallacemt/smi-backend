@@ -13,7 +13,7 @@ services:
 
   app:
     build: .
-    container_name: dev-portifolio-ws
+    container_name: baixio-infra
     ports:
       - "8081:8081"
     volumes:
