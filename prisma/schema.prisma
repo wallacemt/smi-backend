@@ -23,3 +23,37 @@ model CompanyAdmin {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }
+
+model Personas {
+  id                    String            @id @default(uuid())
+  title                 String
+  short_description     String
+  nome                  String
+  idade                 String
+  profissao             String
+  interesses            String
+  objetivos             String
+  desafios              String
+  como_ajuda            String
+  comportamento_digital String
+  poder_aquisitivo      String
+  localizacao           String
+  nivel_educacional     String
+  estado_civil          String
+  numero_de_filhos      String
+  preferencias_de_marca String
+  frequencia_de_viagem  String
+  createdAt             DateTime          @default(now())
+  postsByPersonas       PostsByPersonas[] @relation("PersonasToPosts")
+}
+
+model PostsByPersonas {
+  id        String   @id @default(uuid())
+  title     String
+  descricao String
+  imagem    String
+  personaId String
+  hashtags  String[]
+  createdAt DateTime @default(now())
+  persona   Personas @relation("PersonasToPosts", fields: [personaId], references: [id])
+}

@@ -25,6 +25,7 @@ export class CompanyController {
     this.router.post("/", this.addCompanyData.bind(this));
     this.router.put("/:id", this.updateCompanyData.bind(this));
     this.router.delete("/:id", this.deleteCompanyData.bind(this));
+    this.router.get("/:id/scraping", this.screapingResult.bind(this));
   }
 
   public getCompanyData(req: Request, res: Response) {
@@ -65,6 +66,14 @@ export class CompanyController {
     try {
       const data = await this.companyService.deleteCompanyData(req.params.id);
       if (data) res.status(200).json({ message: "data is removed" });
+    } catch (err: unknown) {
+      errorFilter(err, res);
+    }
+  }
+  public async screapingResult(req: Request, res: Response) {
+    try {
+      const data = await this.companyService.scrapingResult();
+      res.status(200).json(data);
     } catch (err: unknown) {
       errorFilter(err, res);
     }

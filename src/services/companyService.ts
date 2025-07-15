@@ -2,9 +2,11 @@ import { CompanyDataRepository } from "../repository/companyRepository";
 import { CompanyDataType, CompanyDataTypeOptional } from "../types/companyDataTypes";
 import { Exception } from "../utils/exception";
 import { companyDataValidation, companyDataValidationOptional } from "../validations/companyDataValidation";
+import { ScrapingService } from "./scrapingService";
 
 export class CompanyService {
   private companyRepository = new CompanyDataRepository();
+  private scraping = new ScrapingService();
   public async getCompanyData() {
     return this.companyRepository.findAllData();
   }
@@ -39,5 +41,10 @@ export class CompanyService {
       throw new Exception("id not found", 404);
     }
     return this.companyRepository.deleteData(id);
+  }
+
+  public async scrapingResult() {
+    const result = await this.scraping.scrapeMultiplePages();
+    return result;
   }
 }
