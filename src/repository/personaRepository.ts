@@ -10,7 +10,16 @@ export class PersonaRepository {
     return await prisma.personas.createMany({ data: persona });
   }
 
+  async findById(id: string) {
+    return await prisma.personas.findUnique({ where: { id } });
+  }
   async delete(id: string) {
-    return await prisma.personas.delete({ where: { id } });
+    return await prisma.$transaction([
+      prisma.postsByPersonas.deleteMany({ where: { personaId: id } }),
+      prisma.personas.delete({ where: { id } }),
+    ]);
+  }
+  async countPersonas() {
+    return await prisma.personas.count();
   }
 }

@@ -3,6 +3,7 @@ import { env } from "../env";
 import { ScrapingService } from "./scrapingService";
 import { PersonaRequest } from "../types/personas";
 import { PersonaRepository } from "../repository/personaRepository";
+import { Exception } from "../utils/exception";
 
 const gemini = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY });
 const model = "gemini-2.5-flash";
@@ -15,10 +16,15 @@ export class PersonaGeneratorService {
 
   public async generatePersonas() {
     const scrapedData = await this.scrapingService.scrapeMultiplePages();
+    const count = await this.personasRepository.countPersonas();
+    if (count >= 3) {
+      throw new Exception("Limite de personas atingido", 409);
+    }
 
+    const toGenerate = 3 - count;
     const prompt = `
         Você é um estraregista de markering digital.
-        Com base no conteúdo extraído de um site de turismo chamado BaixioTurismo, gere **3 personas ideias** para campanhas de marketing.
+        Com base no conteúdo extraído de um site de turismo chamado BaixioTurismo, gere **${toGenerate} personas ideias** para campanhas de marketing.
 
         Para cada persona, inclua: 
         - Nome
@@ -68,11 +74,36 @@ export class PersonaGeneratorService {
     const parsed = JSON.parse(jsonRaw!);
 
     try {
-      const personas = await this.savePersonas(parsed.personas);
+      await this.savePersonas(parsed.personas);
+      const personas = await this.getPersonas();
       return personas;
     } catch (err: unknown) {
       console.error("Erro ao salvar personas:", err);
       throw err;
     }
+  }
+
+  public async getPersonas() {
+    return await this.personasRepository.findAll();
+  }
+
+  public async deletePersonaById(id: string) {
+    if (!id || id === ":id" || id === null) {
+      throw new Exception("id is required", 400);
+    }
+    if ((await this.personasRepository.findById(id)) === null) {
+      throw new Exception("id not found", 404);
+    }
+
+    return this.personasRepository.delete(id);
+  }
+  public async getPersonaById(id: string) {
+    if (!id || id === ":id" || id === null) {
+      throw new Exception("id is required", 400);
+    }
+    if ((await this.personasRepository.findById(id)) === null) {
+      throw new Exception("id not found", 404);
+    }
+    return this.personasRepository.findById(id);
   }
 }

@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="2c5fc668-d9fb-4cbb-8707-6a73a41ea376" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/docs/swaggerConfiguration.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/docs/swaggerConfiguration.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/aiController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/aiController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/companyController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/companyController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/env.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/env.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/personaRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/personaRepository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/companyService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/companyService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/geminiService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/geminiService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/personasServices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/personasServices.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/postGeneratorService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/postGeneratorService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/scrapingService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/scrapingService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,10 +24,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2zeJCoxTzBkiFdocIPxqVriTmO3" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -26,6 +37,7 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main"
   }
 }]]></component>

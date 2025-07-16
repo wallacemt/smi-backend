@@ -48,12 +48,12 @@ model Personas {
 }
 
 model PostsByPersonas {
-  id        String   @id @default(uuid())
-  title     String
-  descricao String
-  imagem    String
-  personaId String
-  hashtags  String[]
-  createdAt DateTime @default(now())
-  persona   Personas @relation("PersonasToPosts", fields: [personaId], references: [id])
+    id        String   @id @default(uuid())
+    title     String
+    descricao String
+    imagem    String
+    personaId String
+    hashtags  String[]
+    createdAt DateTime @default(now())
+    persona   Personas @relation("PersonasToPosts", fields: [personaId], references: [id])
 }

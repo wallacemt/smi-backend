@@ -1,3 +1,4 @@
+import { CompanyAdminRepository } from "../repository/companyAdminRepository";
 import { CompanyDataRepository } from "../repository/companyRepository";
 import { CompanyDataType, CompanyDataTypeOptional } from "../types/companyDataTypes";
 import { Exception } from "../utils/exception";
@@ -6,6 +7,7 @@ import { ScrapingService } from "./scrapingService";
 
 export class CompanyService {
   private companyRepository = new CompanyDataRepository();
+  private companyAdminRepository = new CompanyAdminRepository();
   private scraping = new ScrapingService();
   public async getCompanyData() {
     return this.companyRepository.findAllData();
@@ -46,5 +48,16 @@ export class CompanyService {
   public async scrapingResult() {
     const result = await this.scraping.scrapeMultiplePages();
     return result;
+  }
+
+  public async getAdminData(id: string) {
+    const data = await this.companyAdminRepository.findById(id);
+    if (!data) throw new Exception("id not found", 404);
+    return {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      companyPosition: data.companyPosition,
+    };
   }
 }

@@ -2,6 +2,7 @@ import axios from "axios";
 import * as cheerio from "cheerio";
 const urls = [
   "https://baixioturismo.com.br/pt/",
+  "https://baixioturismo.com.br/pt/baixio-turismo/",
   "https://baixioturismo.com.br/pt/sobre-baixio/",
   "https://baixioturismo.com.br/pt/pacotes/viva-baixio-com-o-charme-da-aldeola/",
   "https://baixioturismo.com.br/pt/pacotes/viva-baixio-com-sofisticacao/",
