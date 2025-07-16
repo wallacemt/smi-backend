@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c5fc668-d9fb-4cbb-8707-6a73a41ea376" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/aiController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/aiController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/companyController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/companyController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/env.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/env.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/personaRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/personaRepository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/companyService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/companyService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/geminiService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/geminiService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/personasServices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/personasServices.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/postGeneratorService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/postGeneratorService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/scrapingService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/scrapingService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,14 +24,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
