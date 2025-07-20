@@ -1,19 +1,7 @@
 services:
-  postgresql:
-    image: postgres
-    container_name: "db"
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: bootcamp
-    ports:
-      - 5432:5432
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
   app:
     build: .
-    container_name: baixio-infra
+    container_name: smi-infra
     ports:
       - "8081:8081"
     volumes:
