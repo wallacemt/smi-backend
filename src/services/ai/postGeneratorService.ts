@@ -1,13 +1,17 @@
-import { PersonaRepository } from "../repository/personaRepository";
-import { PostByPersonaRepository } from "../repository/postByPersonaRepository";
-import { PostByPersonaRequest } from "../types/posts";
-import { Exception } from "../utils/exception";
-import { GeminiService } from "./geminiService";
+import { PersonaRepository } from "../../repository/personaRepository";
+import { PostByPersonaRepository } from "../../repository/postByPersonaRepository";
+import { PostByPersonaRequest } from "../../types/posts";
+import { Exception } from "../../utils/exception";
+import { ImageGenerateService } from "./imageGenerateService";
+import { TextGenerateService } from "./textGenerateService";
 
 export class PostGeneratorService {
-  private gemini = new GeminiService();
   private personaRepository = new PersonaRepository();
   private postRepository = new PostByPersonaRepository();
+  private textGenerateService = new TextGenerateService();
+  private imageGenerateService = new ImageGenerateService();
+
+
   public async generatePostForPersona(personaId: string, promptUser?: string) {
     const persona = await this.personaRepository.findById(personaId);
     if (!persona) {
@@ -43,12 +47,12 @@ export class PostGeneratorService {
         "hashtags": ["...", "...", "..."]
         }
     `.trim();
-    const result = await this.gemini.generateText(textPrompt);
+    const result = await this.textGenerateService.generateText(textPrompt);
     const parsed = JSON.parse(result);
 
-    const imagePrompt = await this.gemini.generateImagePromptByText(parsed.descricao);
+    const imagePrompt = await this.textGenerateService.generateImagePromptByText(parsed.descricao);
 
-    const image = await this.gemini.generateImage(imagePrompt!);
+    const image = await this.imageGenerateService.generateImage(imagePrompt!);
 
     const post: PostByPersonaRequest = {
       title: parsed.title,
@@ -84,6 +88,4 @@ export class PostGeneratorService {
     }
     return this.postRepository.findByPersonaId(id);
   }
-
-  
 }

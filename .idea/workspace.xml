@@ -5,7 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c5fc668-d9fb-4cbb-8707-6a73a41ea376" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config/cloudinary.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config/gemini.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/ai/imageGenerateService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/ai/textGenerateService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/ai/videoGenerateService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/aiController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/aiController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/cloudinaryService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/cloudinaryService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/geminiService.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/personasServices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ai/personasServices.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/postGeneratorService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ai/postGeneratorService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/statusService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/statusService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/aiTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/aiTypes.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

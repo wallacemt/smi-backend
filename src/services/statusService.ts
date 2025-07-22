@@ -1,8 +1,9 @@
 import { prisma } from "../prisma/prismaClient";
-import { GeminiService } from "./geminiService";
+import { TextGenerateService } from "./ai/textGenerateService";
+
 
 export class StatusService {
-  private aiService = new GeminiService();
+  private textGenerateService = new TextGenerateService();
   async getStatus() {
     const database: any = {};
     const server: any = {};
@@ -21,7 +22,7 @@ export class StatusService {
     }
 
     try {
-      const status = await this.aiService.checkConnection();
+      const status = await this.textGenerateService.checkConnection();
       ai_service.ai = status ;
     } catch (error) {
       ai_service.status = "unhealthy";

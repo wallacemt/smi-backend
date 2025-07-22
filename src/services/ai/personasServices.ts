@@ -1,12 +1,11 @@
 import { GoogleGenAI } from "@google/genai";
-import { env } from "../env";
-import { ScrapingService } from "./scrapingService";
-import { PersonaRequest } from "../types/personas";
-import { PersonaRepository } from "../repository/personaRepository";
-import { Exception } from "../utils/exception";
+import { ScrapingService } from "../scrapingService";
+import { PersonaRepository } from "../../repository/personaRepository";
+import { PersonaRequest } from "../../types/personas";
+import { Exception } from "../../utils/exception";
+import { gemini } from "../../config/gemini";
 
-const gemini = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY });
-const model = "gemini-2.5-flash";
+
 export class PersonaGeneratorService {
   private scrapingService = new ScrapingService();
   private personasRepository = new PersonaRepository();
@@ -66,7 +65,7 @@ export class PersonaGeneratorService {
         }
         `;
     const result = await gemini.models.generateContent({
-      model,
+      model: "gemini-2.5-flash",
       contents: [{ text: prompt }],
     });
 

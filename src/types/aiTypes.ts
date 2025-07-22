@@ -29,3 +29,9 @@ export interface GeminiImageResponse {
   imagePath: string;
   prompt: string;
 }
+
+export interface GeminiVideoResponse {
+  mimeType: string;
+  videoPath: string;
+  prompt: string;
+}
