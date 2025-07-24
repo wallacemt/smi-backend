@@ -8,6 +8,7 @@ import { AuthController } from "./controllers/authController";
 import { CompanyController } from "./controllers/companyController";
 import { GeminiController } from "./controllers/aiController";
 import { requestLogger } from "./middleware/requestLogger";
+import { SchedulePostController } from "./controllers/sheduleController";
 
 dotenv.config();
 class App {
@@ -25,6 +26,7 @@ class App {
     this.app.use("/auth", new AuthController().router);
     this.app.use("/company", new CompanyController().router);
     this.app.use("/ai", new GeminiController().router);
+    this.app.use("/schedule", new SchedulePostController().router);
     this.app.use(
       "/docs",
       swaggerUi.serve,

@@ -11,7 +11,6 @@ export class PostGeneratorService {
   private textGenerateService = new TextGenerateService();
   private imageGenerateService = new ImageGenerateService();
 
-
   public async generatePostForPersona(personaId: string, promptUser?: string) {
     const persona = await this.personaRepository.findById(personaId);
     if (!persona) {
@@ -87,5 +86,15 @@ export class PostGeneratorService {
       throw new Exception("id not found", 404);
     }
     return this.postRepository.findByPersonaId(id);
+  }
+
+  public async getPostById(id: string) {
+    if (!id || id === ":id" || id === null) {
+      throw new Exception("id is required", 400);
+    }
+    if ((await this.postRepository.findById(id)) === null) {
+      throw new Exception("id not found", 404);
+    }
+    return this.postRepository.findById(id);
   }
 }

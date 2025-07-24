@@ -29,6 +29,7 @@ export class GeminiController {
 
     this.router.post("/persona/:id/generate-post", this.generatePostByPersona.bind(this));
     this.router.get("/posts", this.getGeneratedPosts.bind(this));
+    this.router.get("/posts/:id", this.getPostById.bind(this));
     this.router.get("/posts/persona/:id", this.getPostsByPersona.bind(this));
     this.router.delete("/posts/:id", this.deletePostById.bind(this));
 
@@ -93,6 +94,15 @@ export class GeminiController {
     try {
       const posts = await this.postGenService.getPostsByPersona(req.params.id);
       res.status(200).json(posts);
+    } catch (err) {
+      console.error(err);
+      errorFilter(err, res);
+    }
+  }
+  public async getPostById(req: Request, res: Response) {
+    try {
+      const post = await this.postGenService.getPostById(req.params.id);
+      res.status(200).json(post);
     } catch (err) {
       console.error(err);
       errorFilter(err, res);

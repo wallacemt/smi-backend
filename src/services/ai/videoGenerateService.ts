@@ -13,7 +13,7 @@ export class VideoGenerateService {
       const image = fs.readFileSync("./public/bxio.jpg", "base64");
 
       let operation = await gemini.models.generateVideos({
-        model: "veo-2.0-generate-001",
+        model: "veo-3.0-generate-preview",
         prompt: fullPrompt,
         config: { numberOfVideos: 1, aspectRatio: "16:9" },
         image: {
